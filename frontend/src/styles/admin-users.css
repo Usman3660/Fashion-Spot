@@ -1,0 +1,58 @@
+.admin-users-container {
+    padding: 40px;
+    max-width: 900px;
+    margin: auto;
+    background-color: #fefefe;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+  }
+  
+  .admin-header h2 {
+    margin: 0;
+  }
+  
+  .admin-header button {
+    padding: 8px 14px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .admin-users-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+  }
+  
+  .admin-users-table th,
+  .admin-users-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .admin-users-table th {
+    background-color: #f4f4f4;
+  }
+  
+  .delete-btn {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .delete-btn:hover {
+    background-color: #c0392b;
+  }
+  

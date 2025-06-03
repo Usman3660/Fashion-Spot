@@ -1,0 +1,446 @@
+{
+  "stats": {
+    "suites": 5,
+    "tests": 8,
+    "passes": 8,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-05-13T22:39:39.768Z",
+    "end": "2025-05-13T22:39:42.452Z",
+    "duration": 2684,
+    "testsRegistered": 8,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "b4523f3b-5efd-4cd9-92a1-8e13ad269380",
+      "title": "",
+      "fullFile": "",
+      "file": "",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "328b1ede-3f44-43a3-8946-1e7a8a8020a7",
+          "title": "Auth API",
+          "fullFile": "D:\\Sixth smester\\web\\fashion-spot_Updated\\fashion-spot_Updated\\auth-service\\testcases\\auth.test.js",
+          "file": "\\testcases\\auth.test.js",
+          "beforeHooks": [
+            {
+              "title": "\"before all\" hook in \"Auth API\"",
+              "fullTitle": "Auth API \"before all\" hook in \"Auth API\"",
+              "timedOut": false,
+              "duration": 1316,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// Start MongoDB in-memory server\nmongoServer = await MongoMemoryServer.create();\nconst mongoUri = mongoServer.getUri();\n\n// Disconnect from any existing connection and connect to test DB\nawait mongoose.disconnect();\nawait mongoose.connect(mongoUri);",
+              "err": {},
+              "uuid": "eddf3f09-a88c-43d7-9460-cd1a885f5e69",
+              "parentUUID": "328b1ede-3f44-43a3-8946-1e7a8a8020a7",
+              "isHook": true,
+              "skipped": false
+            },
+            {
+              "title": "\"before each\" hook in \"Auth API\"",
+              "fullTitle": "Auth API \"before each\" hook in \"Auth API\"",
+              "timedOut": false,
+              "duration": 1,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// Clear User collection before each test\nawait User.deleteMany({});",
+              "err": {},
+              "uuid": "6374a404-dd9a-4851-9176-1939c934a257",
+              "parentUUID": "328b1ede-3f44-43a3-8946-1e7a8a8020a7",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [
+            {
+              "title": "\"after all\" hook in \"Auth API\"",
+              "fullTitle": "Auth API \"after all\" hook in \"Auth API\"",
+              "timedOut": false,
+              "duration": 41,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// Clean up\nawait mongoose.disconnect();\nawait mongoServer.stop();",
+              "err": {},
+              "uuid": "2ba66a79-c9d1-4f39-9bd2-7bec8dc82179",
+              "parentUUID": "328b1ede-3f44-43a3-8946-1e7a8a8020a7",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [],
+          "suites": [
+            {
+              "uuid": "3ce73882-007a-479b-8a95-15b7009a30ad",
+              "title": "POST /auth/register",
+              "fullFile": "D:\\Sixth smester\\web\\fashion-spot_Updated\\fashion-spot_Updated\\auth-service\\testcases\\auth.test.js",
+              "file": "\\testcases\\auth.test.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "should register a new user",
+                  "fullTitle": "Auth API POST /auth/register should register a new user",
+                  "timedOut": false,
+                  "duration": 154,
+                  "state": "passed",
+                  "speed": "slow",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "const res = await chai.request(app)\n  .post('/auth/register')\n  .send({\n    email: 'test@example.com',\n    password: 'password123',\n    role: 'customer',\n  });\nexpect(res).to.have.status(201);\nexpect(res.body).to.have.property('message', 'User registered successfully');\nexpect(res.body).to.have.property('token');",
+                  "err": {},
+                  "uuid": "635f60f9-199f-461b-9462-daf665947c71",
+                  "parentUUID": "3ce73882-007a-479b-8a95-15b7009a30ad",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "should not register a user with an existing email",
+                  "fullTitle": "Auth API POST /auth/register should not register a user with an existing email",
+                  "timedOut": false,
+                  "duration": 102,
+                  "state": "passed",
+                  "speed": "slow",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "await User.create({\n  email: 'test@example.com',\n  password: 'password123',\n  role: 'customer',\n});\nconst res = await chai.request(app)\n  .post('/auth/register')\n  .send({\n    email: 'test@example.com',\n    password: 'password123',\n    role: 'customer',\n  });\nexpect(res).to.have.status(400);\nexpect(res.body).to.have.property('message', 'User already exists');",
+                  "err": {},
+                  "uuid": "f2fcff42-b227-47d8-9aee-cb25f1a06355",
+                  "parentUUID": "3ce73882-007a-479b-8a95-15b7009a30ad",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "should return 400 for invalid input",
+                  "fullTitle": "Auth API POST /auth/register should return 400 for invalid input",
+                  "timedOut": false,
+                  "duration": 18,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "const res = await chai.request(app)\n  .post('/auth/register')\n  .send({\n    email: 'invalid-email',\n    password: '',\n  });\nexpect(res).to.have.status(500); // Adjust based on actual validation",
+                  "err": {},
+                  "uuid": "01fa309c-cdaa-42c2-8c71-cb37c39b04ad",
+                  "parentUUID": "3ce73882-007a-479b-8a95-15b7009a30ad",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [
+                "635f60f9-199f-461b-9462-daf665947c71",
+                "f2fcff42-b227-47d8-9aee-cb25f1a06355",
+                "01fa309c-cdaa-42c2-8c71-cb37c39b04ad"
+              ],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 274,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 10000
+            },
+            {
+              "uuid": "0b2f5d11-9eb3-4bff-9384-81c0c788f6d7",
+              "title": "POST /auth/login",
+              "fullFile": "D:\\Sixth smester\\web\\fashion-spot_Updated\\fashion-spot_Updated\\auth-service\\testcases\\auth.test.js",
+              "file": "\\testcases\\auth.test.js",
+              "beforeHooks": [
+                {
+                  "title": "\"before each\" hook in \"POST /auth/login\"",
+                  "fullTitle": "Auth API POST /auth/login \"before each\" hook in \"POST /auth/login\"",
+                  "timedOut": false,
+                  "duration": 90,
+                  "state": null,
+                  "speed": null,
+                  "pass": false,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "await chai.request(app)\n  .post('/auth/register')\n  .send({\n    email: 'test@example.com',\n    password: 'password123',\n    role: 'customer',\n  });",
+                  "err": {},
+                  "uuid": "4b518e36-552f-4a3d-8835-32ba4b8c2c57",
+                  "parentUUID": "0b2f5d11-9eb3-4bff-9384-81c0c788f6d7",
+                  "isHook": true,
+                  "skipped": false
+                }
+              ],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "should login a user with correct credentials",
+                  "fullTitle": "Auth API POST /auth/login should login a user with correct credentials",
+                  "timedOut": false,
+                  "duration": 86,
+                  "state": "passed",
+                  "speed": "slow",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "const res = await chai.request(app)\n  .post('/auth/login')\n  .send({\n    email: 'test@example.com',\n    password: 'password123',\n  });\nexpect(res).to.have.status(200);\nexpect(res.body).to.have.property('message', 'Login successful');\nexpect(res.body).to.have.property('token');",
+                  "err": {},
+                  "uuid": "81bf2fb5-5c06-4bf5-bf17-244e3b5e228f",
+                  "parentUUID": "0b2f5d11-9eb3-4bff-9384-81c0c788f6d7",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "should not login with incorrect password",
+                  "fullTitle": "Auth API POST /auth/login should not login with incorrect password",
+                  "timedOut": false,
+                  "duration": 83,
+                  "state": "passed",
+                  "speed": "slow",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "const res = await chai.request(app)\n  .post('/auth/login')\n  .send({\n    email: 'test@example.com',\n    password: 'wrongpassword',\n  });\nexpect(res).to.have.status(400);\nexpect(res.body).to.have.property('message', 'Incorrect password');",
+                  "err": {},
+                  "uuid": "3d734dff-4f76-43f9-ac59-aa7ba8462e08",
+                  "parentUUID": "0b2f5d11-9eb3-4bff-9384-81c0c788f6d7",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "should not login with non-existent user",
+                  "fullTitle": "Auth API POST /auth/login should not login with non-existent user",
+                  "timedOut": false,
+                  "duration": 7,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "const res = await chai.request(app)\n  .post('/auth/login')\n  .send({\n    email: 'nonexistent@example.com',\n    password: 'password123',\n  });\nexpect(res).to.have.status(400);\nexpect(res.body).to.have.property('message', 'User not found');",
+                  "err": {},
+                  "uuid": "22e9b65f-c950-4706-be02-f255425b4469",
+                  "parentUUID": "0b2f5d11-9eb3-4bff-9384-81c0c788f6d7",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [
+                "81bf2fb5-5c06-4bf5-bf17-244e3b5e228f",
+                "3d734dff-4f76-43f9-ac59-aa7ba8462e08",
+                "22e9b65f-c950-4706-be02-f255425b4469"
+              ],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 176,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 10000
+            }
+          ],
+          "passes": [],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 10000
+        },
+        {
+          "uuid": "14720a6f-6f00-43b4-81ff-93fc617943a7",
+          "title": "Product API",
+          "fullFile": "D:\\Sixth smester\\web\\fashion-spot_Updated\\fashion-spot_Updated\\auth-service\\testcases\\product.test.js",
+          "file": "\\testcases\\product.test.js",
+          "beforeHooks": [
+            {
+              "title": "\"before all\" hook in \"Product API\"",
+              "fullTitle": "Product API \"before all\" hook in \"Product API\"",
+              "timedOut": false,
+              "duration": 495,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// Start MongoDB in-memory server\nmongoServer = await MongoMemoryServer.create();\nconst mongoUri = mongoServer.getUri();\n\n// Connect to test DB\nawait mongoose.disconnect();\nawait mongoose.connect(mongoUri);\n// Create an admin user and generate a token\nconst admin = await User.create({\n  email: 'admin@example.com',\n  password: 'password123',\n  role: 'admin',\n});\nadminToken = jwt.sign(\n  { userId: admin._id, role: admin.role },\n  process.env.JWT_SECRET || 'yourSecretKey123',\n  { expiresIn: '1h' }\n);",
+              "err": {},
+              "uuid": "b0abfb8e-32a8-463e-9d95-7695f702cd22",
+              "parentUUID": "14720a6f-6f00-43b4-81ff-93fc617943a7",
+              "isHook": true,
+              "skipped": false
+            },
+            {
+              "title": "\"before each\" hook in \"Product API\"",
+              "fullTitle": "Product API \"before each\" hook in \"Product API\"",
+              "timedOut": false,
+              "duration": 2,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// Clear Product collection before each test\nawait Product.deleteMany({});",
+              "err": {},
+              "uuid": "55a911ca-f3ca-443d-a917-3a2381b0b9ee",
+              "parentUUID": "14720a6f-6f00-43b4-81ff-93fc617943a7",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [
+            {
+              "title": "\"after all\" hook in \"Product API\"",
+              "fullTitle": "Product API \"after all\" hook in \"Product API\"",
+              "timedOut": false,
+              "duration": 18,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// Clean up\nawait mongoose.disconnect();\nawait mongoServer.stop();",
+              "err": {},
+              "uuid": "75296663-c485-4766-8c8c-5ac795b6b055",
+              "parentUUID": "14720a6f-6f00-43b4-81ff-93fc617943a7",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [],
+          "suites": [
+            {
+              "uuid": "6ffe0b02-6d63-4bc8-a2f5-1dfe8a0cb33c",
+              "title": "GET /products",
+              "fullFile": "D:\\Sixth smester\\web\\fashion-spot_Updated\\fashion-spot_Updated\\auth-service\\testcases\\product.test.js",
+              "file": "\\testcases\\product.test.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "should retrieve all products",
+                  "fullTitle": "Product API GET /products should retrieve all products",
+                  "timedOut": false,
+                  "duration": 13,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "await Product.create({\n  name: 'Test Product',\n  description: 'A test product',\n  price: 29.99,\n  images: ['http://example.com/image.jpg'],\n  category: 'Test Category',\n  stock: 100,\n});\nconst res = await chai.request(app)\n  .get('/products');\nexpect(res).to.have.status(200);\nexpect(res.body).to.be.an('array');\nexpect(res.body[0]).to.have.property('name', 'Test Product');",
+                  "err": {},
+                  "uuid": "6eddf29e-d64f-429c-a2ef-d8113193e829",
+                  "parentUUID": "6ffe0b02-6d63-4bc8-a2f5-1dfe8a0cb33c",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "should return empty array when no products exist",
+                  "fullTitle": "Product API GET /products should return empty array when no products exist",
+                  "timedOut": false,
+                  "duration": 12,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "const res = await chai.request(app)\n  .get('/products');\nexpect(res).to.have.status(200);\nexpect(res.body).to.be.an('array');\nexpect(res.body).to.have.lengthOf(0);",
+                  "err": {},
+                  "uuid": "43e9a360-f440-41fa-be86-e62b815b8384",
+                  "parentUUID": "6ffe0b02-6d63-4bc8-a2f5-1dfe8a0cb33c",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [
+                "6eddf29e-d64f-429c-a2ef-d8113193e829",
+                "43e9a360-f440-41fa-be86-e62b815b8384"
+              ],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 25,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 10000
+            }
+          ],
+          "passes": [],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 10000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 10000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "10.8.2"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "report",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "../mochawesome-report",
+        "reportFilename": "report",
+        "overwrite": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

@@ -1,0 +1,74 @@
+/* src/styles/order-confirmation.css */
+
+.order-confirmation-page {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #fefefe;
+    border-radius: 12px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
+    text-align: center;
+  }
+  
+  .order-confirmation-page h2 {
+    font-size: 2rem;
+    color: #4CAF50;
+    margin-bottom: 20px;
+  }
+  
+  .order-confirmation-page p {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+  }
+  
+  .cart-items {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+  
+  .cart-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+  }
+  
+  .cart-item img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 6px;
+  }
+  
+  .cart-item h4 {
+    font-size: 1.1rem;
+    margin: 0 0 5px;
+  }
+  
+  .cart-summary {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 30px;
+  }
+  
+  .order-confirmation-page button {
+    padding: 12px 25px;
+    background-color: #ff9900;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .order-confirmation-page button:hover {
+    background-color: #e08800;
+  }
+  

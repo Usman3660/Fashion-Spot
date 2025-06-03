@@ -1,0 +1,80 @@
+http:
+  port: 8080
+
+apiEndpoints:
+  auth:
+    paths: ['/api/auth/*']
+  products:
+    paths: ['/api/products/*']
+  orders:
+    paths: ['/api/orders/*']
+  payment:
+    paths: ['/api/payment/*']
+
+serviceEndpoints:
+  authService:
+    url: 'http://localhost:3001/auth'
+  productService:
+    url: 'http://localhost:3001/products'
+  orderService:
+    url: 'http://localhost:3001/orders'
+  paymentService:
+    url: 'http://localhost:3001/payment'
+
+policies:
+  - cors
+  - proxy
+  - jwt
+
+pipelines:
+  default:
+    apiEndpoints:
+      - auth
+      - products
+      - orders
+      - payment
+    policies:
+      - cors:
+          action:
+            origin: '*'
+            methods: 'GET,HEAD,PUT,PATCH,POST,DELETE'
+      - jwt:
+          action:
+            secretOrPublicKey: '${JWT_SECRET}'
+            credentialsRequired: false
+            getToken: {
+              header: 'authorization',
+              prefix: 'Bearer '
+            }
+      - proxy:
+          action:
+            serviceEndpoint: authService
+            changeOrigin: true
+            stripPath: true
+            when:
+              name: pathMatch
+              pattern: '/api/auth/*'
+      - proxy:
+          action:
+            serviceEndpoint: productService
+            changeOrigin: true
+            stripPath: true
+            when:
+              name: pathMatch
+              pattern: '/api/products/*'
+      - proxy:
+          action:
+            serviceEndpoint: orderService
+            changeOrigin: true
+            stripPath: true
+            when:
+              name: pathMatch
+              pattern: '/api/orders/*'
+      - proxy:
+          action:
+            serviceEndpoint: paymentService
+            changeOrigin: true
+            stripPath: true
+            when:
+              name: pathMatch
+              pattern: '/api/payment/*'

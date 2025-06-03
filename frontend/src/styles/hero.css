@@ -1,0 +1,42 @@
+/* frontend/src/styles/hero.css */
+
+.hero-banner {
+   
+    padding: 100px 20px;
+    text-align: center;
+    color: white;
+    border-radius: 10px;
+    margin: 30px auto;
+    max-width: 1200px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .hero-banner h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+  
+  .hero-banner p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .hero-banner button {
+    padding: 12px 25px;
+    font-size: 1rem;
+    background-color: #ffcc00;
+    border: none;
+    color: black;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .hero-banner button:hover {
+    background-color: #e0b300;
+  }
+  

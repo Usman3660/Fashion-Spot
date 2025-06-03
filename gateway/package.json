@@ -1,0 +1,15 @@
+{
+  "name": "gateway",
+  "description": "Express Gateway Instance Bootstraped from Command Line",
+  "repository": {},
+  "license": "UNLICENSED",
+  "version": "1.0.0",
+  "main": "server.js",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express-gateway": "^1.16.11",
+    "express-jwt": "^8.5.1",
+    "jwks-rsa": "^3.2.0"
+  }
+}

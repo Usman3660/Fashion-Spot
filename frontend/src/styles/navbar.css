@@ -1,0 +1,66 @@
+/* src/styles/navbar.css */
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1f1f1f;
+  padding: 15px 30px;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* Style the unordered list (main nav items) */
+.navbar ul {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  list-style: none; /* Remove bullets */
+  margin: 0;
+  padding: 0;
+}
+
+/* Each list item */
+.navbar li {
+  display: flex;
+  align-items: center;
+}
+
+/* Links and buttons in navbar */
+.navbar a,
+.navbar button {
+  color: white;
+  text-decoration: none;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 8px 12px;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Hover effect for all items */
+.navbar a:hover,
+.navbar button:hover {
+  background-color: #333;
+  border-radius: 5px;
+  color: #ffcc00;
+}
+
+/* Logout button styling */
+.logout-btn {
+  background-color: #ff4d4d;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 5px;
+  font-size: 0.95rem;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+  background-color: #e60000;
+}
