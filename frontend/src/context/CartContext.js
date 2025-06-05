@@ -1,11 +1,7 @@
 // frontend/src/context/CartContext.js
 
 import React, { createContext, useState, useContext, useEffect } from 'react';
-import axios from 'axios';
-
-// 1) Configure Axios default base URL for all requests
-axios.defaults.baseURL = 'http://localhost:3001';
-axios.defaults.headers.post['Content-Type'] = 'application/json';
+import api from '../api';
 
 const CartContext = createContext();
 
@@ -48,7 +44,7 @@ export const CartProvider = ({ children }) => {
 
     // 2) Sync with backend
     try {
-      await axios.post('/orders/create', {
+      await api.post('/orders/create', {
         userId: 'userId',             // TODO: replace with real user ID
         cart: updatedCart,
         totalAmount: calculateTotal(),

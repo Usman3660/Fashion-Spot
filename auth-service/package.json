@@ -9,7 +9,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
     "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",
@@ -39,5 +38,6 @@
     "mongodb-memory-server": "^8.9.0",
     "sinon": "^14.0.0",
     "supertest": "^6.2.3"
-  }
+  },
+  "description": ""
 }

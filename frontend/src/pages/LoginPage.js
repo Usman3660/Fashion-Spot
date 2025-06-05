@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import '../styles/login.css';
-import axios from 'axios';
+import api from '../api';
 import { GoogleLogin } from '@react-oauth/google';
 import { jwtDecode } from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
@@ -26,8 +26,8 @@ const LoginPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Using direct API call to the auth service
-      const res = await axios.post('http://localhost:3001/auth/login', { email, password });
+      // Using centralized API configuration
+      const res = await api.post('/auth/login', { email, password });
       const token = res.data.token;
       localStorage.setItem('token', token);
 
@@ -44,8 +44,8 @@ const LoginPage = () => {
       // decode credential to get user info
       const googleUser = jwtDecode(credentialResponse.credential);
 
-      // Using direct API call to the auth service
-      const res2 = await axios.post('http://localhost:3001/auth/google-login', {
+      // Using centralized API configuration
+      const res2 = await api.post('/auth/google-login', {
         name: googleUser.name,
         email: googleUser.email,
         picture: googleUser.picture,

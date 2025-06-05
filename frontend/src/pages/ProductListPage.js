@@ -1,8 +1,8 @@
 //frontend/src/pages/ProductListPage.js
 
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
+import api from '../api';
 import HeroBanner from '../components/HeroBanner';
 import '../styles/product-list.css';
 
@@ -12,8 +12,8 @@ const ProductListPage = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        // Using the correct API endpoint with the /api prefix
-        const response = await axios.get('http://localhost:3001/products');
+        // Using the centralized API configuration
+        const response = await api.get('/products');
         setProducts(response.data);
       } catch (error) {
         console.log('Error fetching products:', error);

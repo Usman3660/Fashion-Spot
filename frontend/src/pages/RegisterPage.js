@@ -1,7 +1,6 @@
 // frontend/src/pages/RegisterPage.js
 
 import React, { useState } from 'react';
-import axios from 'axios';
 import '../styles/register.css';
 import api from '../api';
 
@@ -14,8 +13,8 @@ const RegisterPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Using direct API call to the auth service
-      await axios.post('http://localhost:3001/auth/register', { email, password, role });
+      // Using centralized API configuration
+      await api.post('/auth/register', { email, password, role });
 
       alert('Registration Successful');
     } catch (err) {

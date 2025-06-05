@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import api from '../api';
 import { useCart } from '../context/CartContext';
 
 const ProductDetailPage = () => {
@@ -15,8 +15,8 @@ const ProductDetailPage = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        // Use direct axios call to auth-service instead of going through the gateway
-        const response = await axios.get(`http://localhost:3001/products/${id}`);
+        // Use centralized API configuration
+        const response = await api.get(`/products/${id}`);
         setProduct(response.data);
         setError(null);
       } catch (error) {
