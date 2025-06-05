@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: process.env.REACT_APP_API_GATEWAY_URL || 'http://localhost:8080/api',
+  baseURL: process.env.REACT_APP_API_GATEWAY_URL || 'https://fashion-spot-nu.vercel.app/api',
   headers: {
     'Content-Type': 'application/json',
   },
